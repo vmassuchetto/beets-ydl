@@ -1,0 +1,9 @@
+.vscode
+
+/build
+/dist
+/env/*
+env.lib.db
+*.egg-info
+
+__pycache__
