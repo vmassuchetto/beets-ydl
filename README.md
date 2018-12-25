@@ -23,88 +23,71 @@ And enable `ydl` plugin on your `config.yaml` file.
 
 ## Configuration
 
-Available options on `config.yaml`:
+Available options and default values on `config.yaml`:
 
-- `download`: will download files from sources after getting information,
-  defaults to `True`
-
-- `split_files`: will try to split album files into separate tracks, defaults
-  to `True`
-
-- `import`: will import files on youtube-dl after downloading and splitting,
-  defaults to `True`
-
-- `urls`: a list of default urls to download when no arguments are provided, you
-  can provide a playlist to get checked every time
-
-- `youtubedl_options` is a dictionary of
-  [a lot of youtube-dl options available](https://git.io/fN0c7)
-
-Example:
-
-```yaml
+```yml
 plugins: ydl
 
 ydl:
-    split_files: true
-    urls:
-        - url1
-        - url2
-        - url3
-    youtubedl_options:
-        postprocessors:
-            key': 'SomeOtherExtractor',
-            preferredcodec: 'ogg'
+    download: True         # download files from sources after getting information,
+    split_files: True       # try to split album files into separate tracks,
+    import: True           # import files on youtube-dl after downloading and splitting,
+    youtubedl_options: {}  # youtube-dl available options -- https://git.io/fN0c7
+    urls: []               # list of default urls to download when no arguments are provided, you
+                           # can provide a playlist to get checked every time
 ```
+
 ## Tips
 
-### Use a `.netrc` file
+- Use the `bandcamp` plugin for better results
 
-Security discussions apart, you can create a `~/.netrc` with credentials for
-youtube-dl to read.
+- Use a `.netrc` file
 
-    machine youtube login somelogin@gmail.com password somepassword
+  Security discussions apart, you can create a `~/.netrc` with credentials for
+  youtube-dl to read.
 
-Check [this entry](https://git.io/fN2TD) on youtube-dl docs for more
-information.
+      machine youtube login somelogin@gmail.com password somepassword
 
-Like this, you can download private playlists or your subscriptions:
+  Check [this entry](https://git.io/fN2TD) on youtube-dl docs for more
+  information.
 
-    beet ydl "https://www.youtube.com/feed/subscriptions"
+  Like this, you can download private playlists or your subscriptions:
 
-### Download and import later
+      beet ydl "https://www.youtube.com/feed/subscriptions"
 
-To download and split files without importing into beets:
+- Download and import later
 
-    beet ydl "<source>" --keep-files --no-import
+  To download and split files without importing into beets:
 
-And later, to import:
+      beet ydl "<source>" --keep-files --no-import
 
-    beet ydl "<source>" --no-download --no-split-files
+  And later, to import:
 
-Like this, you can download a big playlist and then run the beets import
-routine, which requires manual intervention.
+      beet ydl "<source>" --no-download --no-split-files
 
-### (possibly) enhance audio quality
+  Like this, you can download a big playlist and then run the beets import
+  routine, which requires manual intervention.
 
-beets-ydl uses a proposed [192kbps extractor 'bestaudio'](https://git.io/fN2mJ)
-format because it is more likely that it will find separate audio files on
-sources. Some high quality videos might have better audio quality embedded, so
-it can also make sense to set a higher quality extractor:
+- (possibly) enhance audio quality
 
-```yaml
-ydl:
-    youtubedl_options:
-        format: 'best',
-        postprocessors:
-            key: 'FFmpegExtractAudio'
-            preferredcodec: 'mp3'
-            preferredquality: '320'
-            nopostoverwrites: True
-```
+  beets-ydl uses a proposed [192kbps extractor 'bestaudio'](https://git.io/fN2mJ)
+  format because it is more likely that it will find separate audio files on
+  sources. Some high quality videos might have better audio quality embedded, so
+  it can also make sense to set a higher quality extractor:
 
-This can, however, end-up with unnecessarily big files that have 320kbps as a
-merely nominal quality. See [this discussion](https://askubuntu.com/q/634584).
+  ```yaml
+  ydl:
+      youtubedl_options:
+          format: 'best',
+          postprocessors:
+              key: 'FFmpegExtractAudio'
+              preferredcodec: 'mp3'
+              preferredquality: '320'
+              nopostoverwrites: True
+  ```
+
+  This can, however, end-up with unnecessarily big files that have 320kbps as a
+  merely nominal quality. See [this discussion](https://askubuntu.com/q/634584).
 
 ## Development
 
