@@ -11,7 +11,7 @@ from hashlib import md5
 #
 TESTS = [
     ('4e4372f5d09d872b69654c81620bf6ac', 'https://www.youtube.com/watch?v=uMMUcxvWOkY'),
-    ('af029d7b149e119f5a527440acf2e748', 'https://www.youtube.com/watch?v=Zi_XLOBDo_Y'),
+    ('bb31adda714de9244de82ef6dbff806e',  'https://www.youtube.com/watch?v=Zi_XLOBDo_Y'),
     ('ec734593c0a61678f8a9399f1325d180', 'https://www.youtube.com/watch?v=wW6ykueIhX8'),
 ]
 
