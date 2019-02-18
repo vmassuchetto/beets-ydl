@@ -37,11 +37,22 @@ ydl:
                            # can provide a playlist to get checked every time
 ```
 
+## How it works
+
+The plugin main goal is to deliver an importable file set to the `beet import`
+command, so it will download an audio file, look for a tracklist with track
+times in the video description, split the file into per-track files, assign
+some basic ID3 tags to them, and finally run `beet import` on
+`${BEETS_CONFIG}/ydl-cache/${VIDEO_ID}` directory.
+
 ## Tips
+
+- The video title can trick beets to find the correct album, in this case you'll
+  have to manually enter a search term
 
 - Use the `bandcamp` plugin for better results
 
-- Use a `.netrc` file
+- Use a `.netrc` file to use your own YouTube playlists
 
   Security discussions apart, you can create a `~/.netrc` with credentials for
   youtube-dl to read.
