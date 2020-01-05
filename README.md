@@ -30,7 +30,7 @@ plugins: ydl
 
 ydl:
     download: True         # download files from sources after getting information,
-    split_files: True       # try to split album files into separate tracks,
+    split_files: True      # try to split album files into separate tracks,
     import: True           # import files on youtube-dl after downloading and splitting,
     youtubedl_options: {}  # youtube-dl available options -- https://git.io/fN0c7
     urls: []               # list of default urls to download when no arguments are provided, you
