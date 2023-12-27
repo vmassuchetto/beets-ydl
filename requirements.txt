@@ -1,3 +1,3 @@
 beets
-youtube-dl
+yt-dlp
 pyxdg
